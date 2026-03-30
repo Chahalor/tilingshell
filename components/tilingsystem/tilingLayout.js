@@ -24,7 +24,7 @@ var _DynamicTilePreview = class _DynamicTilePreview extends TilePreview {
   _init()
   {
     super._init();
-    const effect = buildBlurEffect(8);
+    const effect = buildBlurEffect(4);
     effect.set_name("blur");
     effect.set_enabled(true);
     this.add_effect(effect);
