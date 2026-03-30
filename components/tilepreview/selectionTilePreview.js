@@ -45,18 +45,19 @@ var _SelectionTilePreview = class _SelectionTilePreview extends TilePreview {
 
   _init() {
     super._init();
-    const effect = buildBlurEffect(48);
+    const effect = buildBlurEffect(8);
     effect.set_name("blur");
     effect.set_enabled(this._blur);
+	effect.set_enabled(true);
     this.add_effect(effect);
     this.add_style_class_name("selection-tile-preview");
   }
 
   _recolor() {
-    this.set_style(`
-      background-color: rgba(0, 0, 0, 0.01) !important;
-      border: 0;
-    `);
+	this.set_style(`
+		background-color: rgba(229, 229, 229, 0.14) !important;
+		border: 1px solid rgba(229, 229, 229, 0.22);
+	`);
   }
 
   close(ease = false) {
