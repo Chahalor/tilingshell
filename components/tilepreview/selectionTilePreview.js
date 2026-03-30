@@ -45,7 +45,7 @@ var _SelectionTilePreview = class _SelectionTilePreview extends TilePreview {
 
   _init() {
     super._init();
-    const effect = buildBlurEffect(48);
+    const effect = buildBlurEffect(64);
     effect.set_name("blur");
     effect.set_enabled(this._blur);
     this.add_effect(effect);

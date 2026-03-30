@@ -1,5 +1,6 @@
 // For GNOME Shell version before 45
 const Me = imports.misc.extensionUtils.getCurrentExtension();
+var buildBlurEffect = Me.imports.utils.gnomesupport.buildBlurEffect;
 var registerGObjectClass = Me.imports.utils.gjs.registerGObjectClass;
 var Clutter = Me.imports.gi.ext.Clutter;
 var TilePreview = Me.imports.components.tilepreview.tilePreview.TilePreview;
@@ -19,6 +20,17 @@ var _DynamicTilePreview = class _DynamicTilePreview extends TilePreview {
     this._canRestore = canRestore || false;
     this._originalRect = this.rect.copy();
   }
+
+  _init()
+  {
+    super._init();
+    const effect = buildBlurEffect(16); // léger
+    effect.set_name("blur");
+    effect.set_enabled(true);
+    this.add_effect(effect);
+    this.add_style_class_name("layout-tile-preview");
+  }
+
 
   get originalRect() {
     return this._originalRect;
@@ -56,6 +68,12 @@ var _TilingLayout = class _TilingLayout extends LayoutWidget {
     super._init();
     this.hide();
   }
+
+  queueBlurRepaint() {
+  this._previews.forEach((preview) => {
+    preview.get_effect("blur")?.queue_repaint();
+  });
+}
 
   buildTile(parent, rect, gaps, tile) {
     const prev = new DynamicTilePreview({ parent, rect, gaps, tile }, true);

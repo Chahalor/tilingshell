@@ -30,6 +30,10 @@
 }
 .selection-tile-preview {
 }
+.layout-tile-preview {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
 .blur-tile-preview {
   border: 0;
   box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.2);

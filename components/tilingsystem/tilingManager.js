@@ -424,6 +424,8 @@ var TilingManager = class TilingManager {
     );
     if (Settings.ENABLE_BLUR_SNAP_ASSISTANT || Settings.ENABLE_BLUR_SELECTED_TILEPREVIEW) {
       this._signals.connect(window, "position-changed", () => {
+		const ws = window.get_workspace();
+		this._workspaceTilingLayout.get(ws)?.queueBlurRepaint();
         if (Settings.ENABLE_BLUR_SELECTED_TILEPREVIEW) {
           this._selectedTilesPreview.get_effect("blur")?.queue_repaint();
         }
