@@ -422,18 +422,16 @@ var TilingManager = class TilingManager {
         }
       }
     );
-    if (Settings.ENABLE_BLUR_SNAP_ASSISTANT || Settings.ENABLE_BLUR_SELECTED_TILEPREVIEW) {
-      this._signals.connect(window, "position-changed", () => {
+	this._signals.connect(window, "position-changed", () => {
 		const ws = window.get_workspace();
 		this._workspaceTilingLayout.get(ws)?.queueBlurRepaint();
-        if (Settings.ENABLE_BLUR_SELECTED_TILEPREVIEW) {
-          this._selectedTilesPreview.get_effect("blur")?.queue_repaint();
-        }
-        if (Settings.ENABLE_BLUR_SNAP_ASSISTANT) {
-          this._snapAssist.get_first_child()?.get_effect("blur")?.queue_repaint();
-        }
-      });
-    }
+		if (Settings.ENABLE_BLUR_SELECTED_TILEPREVIEW) {
+			this._selectedTilesPreview.get_effect("blur")?.queue_repaint();
+		}
+		if (Settings.ENABLE_BLUR_SNAP_ASSISTANT) {
+			this._snapAssist.get_first_child()?.get_effect("blur")?.queue_repaint();
+		}
+	});
     this._isGrabbingWindow = true;
     this._movingWindowTimerId = GLib.timeout_add(
       GLib.PRIORITY_DEFAULT_IDLE,
@@ -566,6 +564,7 @@ var TilingManager = class TilingManager {
           );
         }
       }
+	  tilingLayout.queueBlurRepaint();
       return GLib.SOURCE_CONTINUE;
     }
     if (!tilingLayout.showing) {

@@ -69,11 +69,13 @@ var _TilingLayout = class _TilingLayout extends LayoutWidget {
     this.hide();
   }
 
-  queueBlurRepaint() {
+queueBlurRepaint() {
+  if (!this._showing) return;
   this._previews.forEach((preview) => {
     preview.get_effect("blur")?.queue_repaint();
   });
 }
+
 
   buildTile(parent, rect, gaps, tile) {
     const prev = new DynamicTilePreview({ parent, rect, gaps, tile }, true);
