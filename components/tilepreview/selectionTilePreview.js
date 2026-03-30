@@ -45,7 +45,7 @@ var _SelectionTilePreview = class _SelectionTilePreview extends TilePreview {
 
   _init() {
     super._init();
-    const effect = buildBlurEffect(64);
+    const effect = buildBlurEffect(48);
     effect.set_name("blur");
     effect.set_enabled(this._blur);
     this.add_effect(effect);
@@ -53,15 +53,10 @@ var _SelectionTilePreview = class _SelectionTilePreview extends TilePreview {
   }
 
   _recolor() {
-    this.set_style(null);
-    const backgroundColor = this.get_theme_node().get_background_color().copy();
-    const newAlpha = Math.max(
-      Math.min(backgroundColor.alpha + 35, 255),
-      160
-    );
     this.set_style(`
-            background-color: rgba(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue}, ${newAlpha / 255}) !important;
-        `);
+      background-color: rgba(0, 0, 0, 0.01) !important;
+      border: 0;
+    `);
   }
 
   close(ease = false) {
