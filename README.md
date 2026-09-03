@@ -1,4 +1,4 @@
-# My version of `github.com/domferr/tilingshellgithub.com/domferr/tilingshell` configured like i want
+# My fork of `github.com/domferr/tilingshellgithub.com/domferr/tilingshell` configured like i want
 
 ## Adding it:
  - make sur you have gnom-shell
